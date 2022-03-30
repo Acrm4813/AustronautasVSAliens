@@ -21,6 +21,7 @@ class Form{
         this.nombre.position(800,150)
         this.input.position(800,200)
         this.button.position(800,250)
+        this.reset.position(displayWidth-100, 20);
 
         this.button.mousePressed(()=>{
             this.input.hide();
@@ -35,6 +36,10 @@ class Form{
             this.bienvenida.html("Bienvenido al Juego "+ player.name)
             this.bienvenida.position(800,100)
         });
+        this.reset.mousePressed(()=>{
+            player.updateCount(0);
+            game.update(0);
+          });
     }
 
     

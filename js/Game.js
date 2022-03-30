@@ -31,10 +31,12 @@ class Game {
   // cambiar por astronauta
       car1 = createSprite(100,200);
       car1.addImage("car1",car1_img);
-      car1.scale = 0.2;
+      car1.scale = 0.05;
       car2 = createSprite(300,200);
       car2.addImage("car2",car2_img);
-      car2.scale = 0.2;
+      car2.scale = 0.05;
+      car1.visible = false;
+      car2.visible = false;
       
       cars = [car1, car2];
     }
@@ -46,18 +48,20 @@ class Game {
       player.getCarsAtEnd();
       
       if(allPlayers !== undefined){
-        background(ground);
-        //cambiar img de fondo
-        image(animation, -displayWidth,-displayHeight,displayWidth, displayHeight);
-        
+        background(rgb(198,135,103));
+        image(ground, 0,-displayHeight*4,displayWidth, displayHeight*5);
+        car1.visible = true;
+        car2.visible = true;
+
+
         //var display_position = 100;
         
         //index of the array
         var index = 0;
   
         //x and y position of the cars
-        var x = 175 ;
-        var y;
+        var x = 1000 ;
+        var y = 1000 ;
   
         for(var plr in allPlayers){
           //add 1 to the index for every loop
@@ -92,9 +96,15 @@ class Game {
         player.update();
       }
      
+      if(player.distance > 2000){ 
+        gameState = 2; 
+        player.rank +=1 
+        Player.updateCarsAtEnd(player.rank) 
+      }
+
       drawSprites();
     }
-  
+
     end(){
       console.log("Game Ended");
       console.log(player.rank);

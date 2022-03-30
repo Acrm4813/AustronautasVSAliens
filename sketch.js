@@ -17,12 +17,15 @@ function preload(){
   car1_img = loadImage("../images/sprite_0.png");
   car2_img = loadImage("../images/sprite_0.png");
   ground = loadImage("../images/background1.png");
-  animation = loadAnimation("../images/imagen1.jpeg","../images/imagen1.jpeg","../images/imagen2.jpeg","../images/imagen2.jpeg","../images/imagen3.jpeg","../images/imagen3.jpeg","../images/imagen4.jpeg","../images/imagen4.jpeg","../images/imagen5.jpeg","../images/imagen5.jpeg","../images/imagen6.jpeg","../images/imagen6.jpeg","../images/imagen7.jpeg","../images/imagen7.jpeg","../images/imagen8.jpeg","../images/imagen8.jpeg")
+  animationImg = loadAnimation("../images/imagen1.jpeg","../images/imagen1.jpeg","../images/imagen2.jpeg","../images/imagen2.jpeg","../images/imagen3.jpeg","../images/imagen3.jpeg","../images/imagen4.jpeg","../images/imagen4.jpeg","../images/imagen5.jpeg","../images/imagen5.jpeg","../images/imagen6.jpeg","../images/imagen6.jpeg","../images/imagen7.jpeg","../images/imagen7.jpeg","../images/imagen8.jpeg","../images/imagen8.jpeg")
 }
 
 function setup(){
   canvas = createCanvas(1900,950);
   database = firebase.database();
+  animation = createSprite(945,475,100,100);
+  animation.addAnimation("animacion" ,animationImg);
+  animation.lifetime = 100;
   game = new Game();
   game.getState();
   game.start();
@@ -40,4 +43,5 @@ function draw(){
   if(gameState === 2){
     game.end();
   }
+  drawSprites();
 }
